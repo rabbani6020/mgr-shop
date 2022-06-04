@@ -1,14 +1,21 @@
+import { CartState } from "../../Context/Context";
 import CartItem from "./CartItem";
 
-const CartItems = ({ cartItems }) => {
+// CartList
+const CartList = () => {
+  // get context value
+  const {
+    state: { cart },
+  } = CartState();
+
   return (
     <div className="py-10">
       <div className="container">
         <h2 className="text-4xl text-center mb-8">Cart Items</h2>
-        {cartItems.length === 0 && (
+        {cart.length === 0 && (
           <h3 className="text-2xl text-center ">No Cart Items Added</h3>
         )}
-        {cartItems.length > 0 && (
+        {cart.length > 0 && (
           <>
             <table className="border-separate border border-slate-400 mx-auto">
               <thead>
@@ -28,7 +35,7 @@ const CartItems = ({ cartItems }) => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item, ind) => (
+                {cart.map((item, ind) => (
                   <tr key={item.id}>
                     <CartItem item={item} ind={ind} />
                   </tr>
@@ -41,13 +48,10 @@ const CartItems = ({ cartItems }) => {
                     Grand Total
                   </td>
                   <td className="border border-slate-300 p-3 text-2xl font-medium ">
-                    {cartItems.reduce((acc, curr) => acc + curr.qty, 0)}
+                    {cart.reduce((acc, curr) => acc + curr.qty, 0)}
                   </td>
                   <td className="border border-slate-300 p-3 text-2xl font-medium ">
-                    {cartItems.reduce(
-                      (acc, curr) => acc + curr.price * curr.qty,
-                      0
-                    )}
+                    {cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0)}
                     Tk
                   </td>
                 </tr>
@@ -60,4 +64,4 @@ const CartItems = ({ cartItems }) => {
   );
 };
 
-export default CartItems;
+export default CartList;

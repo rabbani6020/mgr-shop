@@ -1,14 +1,10 @@
 import React from "react";
-import Products from "../components/Product/Products";
+import ProductList from "../components/Product/ProductList";
 
-const Home = ({ productData, cartHandler, cartItems }) => {
+const Home = () => {
   return (
     <div>
-      <Products
-        productData={productData}
-        cartHandler={cartHandler}
-        cartItems={cartItems}
-      />
+      <ProductList />
     </div>
   );
 };
